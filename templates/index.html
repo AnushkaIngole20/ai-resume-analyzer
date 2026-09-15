@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AI Resume Analyzer</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="background-glow glow-one"></div>
+    <div class="background-glow glow-two"></div>
+
+    <main class="container">
+
+        <section class="hero">
+
+            <div class="logo">
+                🤖
+            </div>
+
+            <h1>
+                AI Resume Analyzer
+            </h1>
+
+            <p>
+                Analyze your resume using
+                <strong>Artificial Intelligence & NLP</strong>
+                and discover how well it matches your target job.
+            </p>
+
+        </section>
+
+
+        {% if error %}
+
+        <div class="error-message">
+            ⚠️ {{ error }}
+        </div>
+
+        {% endif %}
+
+
+        <section class="analyzer-card">
+
+            <form action="/analyze"
+                  method="POST"
+                  enctype="multipart/form-data">
+
+
+                <!-- Resume Upload -->
+
+                <div class="form-section">
+
+                    <label>
+                        📄 Upload Your Resume
+                    </label>
+
+                    <div class="upload-box"
+                         id="uploadBox">
+
+                        <div class="upload-icon">
+                            📁
+                        </div>
+
+                        <h3>
+                            Drag & Drop your PDF here
+                        </h3>
+
+                        <p>
+                            or click to browse
+                        </p>
+
+                        <input
+                            type="file"
+                            id="resume"
+                            name="resume"
+                            accept=".pdf"
+                            required
+                        >
+
+                        <span id="fileName">
+                            No file selected
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Job Description -->
+
+                <div class="form-section">
+
+                    <label for="job_description">
+
+                        💼 Job Description
+
+                    </label>
+
+                    <textarea
+                        id="job_description"
+                        name="job_description"
+                        placeholder="Paste the job description here...
+
+Example:
+We are looking for a Python developer with knowledge of SQL, Flask, Machine Learning and Git."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <!-- Analyze button -->
+
+                <button
+                    type="submit"
+                    class="analyze-button"
+                    id="analyzeButton"
+                >
+
+                    <span>
+                        ✨ Analyze Resume
+                    </span>
+
+                </button>
+
+
+                <div class="ai-info">
+
+                    🧠 Powered by
+                    <strong>TF-IDF + Cosine Similarity + NLP</strong>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <!-- How it works -->
+
+        <section class="how-section">
+
+            <h2>
+                How It Works
+            </h2>
+
+            <div class="steps">
+
+                <div class="step">
+
+                    <span>01</span>
+
+                    <h3>
+                        Upload
+                    </h3>
+
+                    <p>
+                        Upload your resume as a PDF.
+                    </p>
+
+                </div>
+
+
+                <div class="step">
+
+                    <span>02</span>
+
+                    <h3>
+                        Analyze
+                    </h3>
+
+                    <p>
+                        NLP processes your resume and job description.
+                    </p>
+
+                </div>
+
+
+                <div class="step">
+
+                    <span>03</span>
+
+                    <h3>
+                        Get Results
+                    </h3>
+
+                    <p>
+                        See your match score, skills and suggestions.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <footer>
+
+            AI Resume Analyzer • Mini Project
+
+        </footer>
+
+    </main>
+
+
+    <script src="{{ url_for('static', filename='js/script.js') }}">
+    </script>
+
+</body>
+
+</html>

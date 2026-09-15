@@ -1,0 +1,56 @@
+
+python
+java
+c
+c++
+javascript
+typescript
+html
+css
+react
+angular
+vue
+node.js
+node
+express
+flask
+django
+mongodb
+mysql
+sql
+postgresql
+oracle
+git
+github
+docker
+kubernetes
+aws
+azure
+google cloud
+machine learning
+deep learning
+artificial intelligence
+artificial intelligence
+data science
+data analysis
+pandas
+numpy
+matplotlib
+scikit-learn
+tensorflow
+pytorch
+keras
+nlp
+natural language processing
+computer vision
+opencv
+power bi
+tableau
+excel
+figma
+rest api
+api
+linux
+communication
+leadership
+problem solving

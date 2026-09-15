@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Resume Analysis Result</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="background-glow glow-one"></div>
+    <div class="background-glow glow-two"></div>
+
+
+    <main class="container">
+
+        <section class="result-header">
+
+            <div class="logo">
+                🤖
+            </div>
+
+            <h1>
+                Resume Analysis
+            </h1>
+
+            <p>
+                Analysis completed for
+                <strong>{{ filename }}</strong>
+            </p>
+
+        </section>
+
+
+        <!-- Match Score -->
+
+        <section class="score-card">
+
+            <div class="score-circle"
+                 style="--score: {{ result.match_score }}%;">
+
+                <div class="score-inner">
+
+                    <span>
+                        {{ result.match_score }}%
+                    </span>
+
+                    <small>
+                        Match
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="score-info">
+
+                <h2>
+                    Job Compatibility
+                </h2>
+
+                {% if result.match_score >= 70 %}
+
+                    <p class="good">
+                        🟢 Strong match! Your resume aligns well
+                        with the job description.
+                    </p>
+
+                {% elif result.match_score >= 40 %}
+
+                    <p class="medium">
+                        🟡 Moderate match. There are some areas
+                        you can improve.
+                    </p>
+
+                {% else %}
+
+                    <p class="low">
+                        🔴 Low match. Consider adding more relevant
+                        skills and experience.
+                    </p>
+
+                {% endif %}
+
+            </div>
+
+        </section>
+
+
+        <!-- Skills -->
+
+        <section class="results-grid">
+
+
+            <!-- Detected Skills -->
+
+            <div class="result-card">
+
+                <div class="card-title">
+
+                    <span>✅</span>
+
+                    <h2>
+                        Skills Detected
+                    </h2>
+
+                </div>
+
+
+                {% if result.resume_skills %}
+
+                <div class="skills-container">
+
+                    {% for skill in result.resume_skills %}
+
+                    <span class="skill found">
+                        {{ skill }}
+                    </span>
+
+                    {% endfor %}
+
+                </div>
+
+                {% else %}
+
+                <p class="empty">
+                    No known skills detected.
+                </p>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- Missing Skills -->
+
+            <div class="result-card">
+
+                <div class="card-title">
+
+                    <span>🎯</span>
+
+                    <h2>
+                        Missing Skills
+                    </h2>
+
+                </div>
+
+
+                {% if result.missing_skills %}
+
+                <div class="skills-container">
+
+                    {% for skill in result.missing_skills %}
+
+                    <span class="skill missing">
+                        {{ skill }}
+                    </span>
+
+                    {% endfor %}
+
+                </div>
+
+                {% else %}
+
+                <p class="success-text">
+                    🎉 No major missing skills detected!
+                </p>
+
+                {% endif %}
+
+            </div>
+
+
+        </section>
+
+
+        <!-- Job Skills -->
+
+        <section class="result-card full-card">
+
+            <div class="card-title">
+
+                <span>💼</span>
+
+                <h2>
+                    Skills Required by Job
+                </h2>
+
+            </div>
+
+
+            {% if result.job_skills %}
+
+            <div class="skills-container">
+
+                {% for skill in result.job_skills %}
+
+                <span class="skill required">
+                    {{ skill }}
+                </span>
+
+                {% endfor %}
+
+            </div>
+
+            {% else %}
+
+            <p>
+                No predefined skills were detected
+                in the job description.
+            </p>
+
+            {% endif %}
+
+        </section>
+
+
+        <!-- Suggestions -->
+
+        <section class="result-card full-card">
+
+            <div class="card-title">
+
+                <span>💡</span>
+
+                <h2>
+                    AI Suggestions
+                </h2>
+
+            </div>
+
+
+            <div class="suggestions">
+
+                {% for suggestion in result.suggestions %}
+
+                <div class="suggestion">
+
+                    <span>
+                        ✨
+                    </span>
+
+                    <p>
+                        {{ suggestion }}
+                    </p>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+
+        <div class="back-button-container">
+
+            <a href="/" class="back-button">
+                ← Analyze Another Resume
+            </a>
+
+        </div>
+
+
+        <footer>
+
+            AI Resume Analyzer • Mini Project
+
+        </footer>
+
+    </main>
+
+</body>
+
+</html>
